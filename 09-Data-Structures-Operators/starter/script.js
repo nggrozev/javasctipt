@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 // // Data needed for a later exercise
 // const flights =
@@ -31,60 +31,77 @@
 // };
 
 const game = {
-  team1: 'Bayern Munich',
-  team2: 'Borrussia Dortmund',
+  team1: "Bayern Munich",
+  team2: "Borrussia Dortmund",
   players: [
     [
-      'Neuer',
-      'Pavard',
-      'Martinez',
-      'Alaba',
-      'Davies',
-      'Kimmich',
-      'Goretzka',
-      'Coman',
-      'Muller',
-      'Gnarby',
-      'Lewandowski',
+      "Neuer",
+      "Pavard",
+      "Martinez",
+      "Alaba",
+      "Davies",
+      "Kimmich",
+      "Goretzka",
+      "Coman",
+      "Muller",
+      "Gnarby",
+      "Lewandowski",
     ],
     [
-      'Burki',
-      'Schulz',
-      'Hummels',
-      'Akanji',
-      'Hakimi',
-      'Weigl',
-      'Witsel',
-      'Hazard',
-      'Brandt',
-      'Sancho',
-      'Gotze',
+      "Burki",
+      "Schulz",
+      "Hummels",
+      "Akanji",
+      "Hakimi",
+      "Weigl",
+      "Witsel",
+      "Hazard",
+      "Brandt",
+      "Sancho",
+      "Gotze",
     ],
   ],
-  score: '4:0',
-  scored: ['Lewandowski', 'Gnarby', 'Lewandowski', 'Hummels'],
-  date: 'Nov 9th, 2037',
+  score: "4:0",
+  scored: ["Lewandowski", "Gnarby", "Lewandowski", "Hummels"],
+  date: "Nov 9th, 2037",
   odds: {
     team1: 1.33,
     x: 3.25,
     team2: 6.5,
   },
 };
-
-for (const [goal, player] of game.scored.entries())
-  console.log(`Goal ${goal + 1} by player ${player}`);
-
-let average = 0;
-const data = Object.values(game.odds);
-
-for (const ave of data) average += ave;
-average /= data.length;
-console.log(average);
-
-for (const [team, odd] of Object.entries(game.odds)) {
-  console.log(team, odd);
-}
+//
+//for (const [goal, player] of game.scored.entries())
+//  console.log(`Goal ${goal + 1} by player ${player}`);
+//
+//let average = 0;
+//const data = Object.values(game.odds);
+//
+//for (const ave of data) average += ave;
+//average /= data.length;
+//console.log(average);
+//
+//for (const [team, odd] of Object.entries(game.odds)) {
+//  console.log(team, odd);
+//}
 
 // Odd of victory Bayern Munich: 1.3
 //       Odd of draw: 3.25
 //       Odd of victory Borrussia Dortmund: 6.5
+const rest = new Map();
+rest.set("name", "Classico Italiano");
+rest.set(1, "Italy");
+rest.set(2, "Portugal");
+rest
+  .set("categories", ["Italian", "Pizzeria", "Vegetarian", "Organic"])
+  .set("open", 11)
+  .set("close", 23)
+  .set(true, "We are open")
+  .set(false, "We are closed");
+
+console.log(rest);
+console.log(rest.get(1));
+console.log(rest.get(true));
+
+const time = 8;
+console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
