@@ -99,9 +99,32 @@ rest
   .set(true, "We are open")
   .set(false, "We are closed");
 
-console.log(rest);
-console.log(rest.get(1));
-console.log(rest.get(true));
-
-const time = 8;
+const time = 21;
 console.log(rest.get(time > rest.get("open") && time < rest.get("close")));
+console.log(rest.has("categories"));
+rest.delete(2);
+//rest.clear();
+const arr = [1, 2];
+rest.set(arr, "Test");
+console.log(rest);
+console.log(rest.size);
+console.log(rest.get(arr));
+
+const question = new Map([
+  ["question", "What is the best programming language in the world?"],
+  [1, "c"],
+  [2, "java"],
+  [3, "javascript"],
+  ["correct", 3],
+  [true, "Correct"],
+  [false, "Try again"],
+]);
+console.log(question);
+console.log(question.get("question"));
+for (const [key, value] of question) {
+  if (typeof key === "number") console.log(`Answer ${key}: ${value}`);
+}
+//const answer = Number(prompt("What is your answear?"));
+//console.log(question.get(answer === question.get("correct")));
+
+console.log([...question]);
