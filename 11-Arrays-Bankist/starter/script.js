@@ -89,6 +89,7 @@ const createUsenames = accs => {
         .join(''))
   );
 };
+
 createUsenames(accounts);
 console.log(accounts);
 /////////////////////////////////////////////////
