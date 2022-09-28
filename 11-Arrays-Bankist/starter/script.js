@@ -72,7 +72,7 @@ const displayMovements = function (movements) {
       i + 1
     } ${type}</div>
           <div class="movements__date">3 days ago</div>
-          <div class="movements__value">${mov}€</div>
+          <div class="movements__value">${Math.abs(mov)}€</div>
         </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
@@ -130,23 +130,6 @@ const currencies = new Map([
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
 
-const dogAges1 = [5, 2, 4, 1, 15, 8, 3];
-const dogAges2 = [16, 6, 10, 5, 6, 1, 4];
-
-const calcAverageHumanAge = ages => {
-  //const humanAge = ages.map(age => (age <= 2 ? age * 2 : 16 + age * 4));
-  //const excludeDogs = humanAge.filter(age => age >= 18);
-  //const averageAge = Math.trunc(
-  //  excludeDogs.reduce((start, value, i, arr) => start + value / arr.length)
-  //);
-  const humanAge = ages
-    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
-    .filter(age => age >= 18)
-    .reduce((start, value, index, array) => start + value / array.length, 0);
-  console.log(humanAge);
-  //console.log(excludeDogs);
-  //console.log(averageAge);
-};
-
-calcAverageHumanAge(dogAges1);
-calcAverageHumanAge(dogAges2);
+console.log(accounts);
+const account = accounts.find(acc => acc.owner === 'Jessica Davis');
+console.log(account);
