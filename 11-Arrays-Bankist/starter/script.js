@@ -72,7 +72,7 @@ const displayMovements = function (movements) {
       i + 1
     } ${type}</div>
           <div class="movements__date">3 days ago</div>
-          <div class="movements__value">${mov}</div>
+          <div class="movements__value">${mov}€</div>
         </div>`;
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
@@ -84,6 +84,26 @@ const calcDisplayBalance = movements => {
   labelBalance.textContent = `${balance} €`;
 };
 calcDisplayBalance(account1.movements);
+
+const calcDisplaySummery = function (movements) {
+  const incomes = movements
+    .filter(mov => mov > 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumIn.textContent = `${incomes}€`;
+
+  const spendings = movements
+    .filter(mov => mov < 0)
+    .reduce((acc, mov) => acc + mov, 0);
+  labelSumOut.textContent = `${Math.abs(spendings)}€`;
+
+  const intrerest = movements
+    .filter(mov => mov > 0)
+    .map(deposit => (deposit * 1.2) / 100)
+    .filter(deposit => deposit >= 1)
+    .reduce((acc, int) => acc + int, 0);
+  labelSumInterest.textContent = `${intrerest}€`;
+};
+calcDisplaySummery(account1.movements);
 
 const createUsenames = accs => {
   accs.forEach(
@@ -109,6 +129,24 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-const balance = movements.reduce((acc, cur) => acc + cur, 0);
-console.log(movements);
-console.log(balance);
+
+const dogAges1 = [5, 2, 4, 1, 15, 8, 3];
+const dogAges2 = [16, 6, 10, 5, 6, 1, 4];
+
+const calcAverageHumanAge = ages => {
+  //const humanAge = ages.map(age => (age <= 2 ? age * 2 : 16 + age * 4));
+  //const excludeDogs = humanAge.filter(age => age >= 18);
+  //const averageAge = Math.trunc(
+  //  excludeDogs.reduce((start, value, i, arr) => start + value / arr.length)
+  //);
+  const humanAge = ages
+    .map(age => (age <= 2 ? age * 2 : 16 + age * 4))
+    .filter(age => age >= 18)
+    .reduce((start, value, index, array) => start + value / array.length, 0);
+  console.log(humanAge);
+  //console.log(excludeDogs);
+  //console.log(averageAge);
+};
+
+calcAverageHumanAge(dogAges1);
+calcAverageHumanAge(dogAges2);
