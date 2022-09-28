@@ -92,6 +92,7 @@ const createUsenames = accs => {
 
 createUsenames(accounts);
 /////////////////////////////////////////////////
+//////////////////////////
 // LECTURES
 
 const currencies = new Map([
