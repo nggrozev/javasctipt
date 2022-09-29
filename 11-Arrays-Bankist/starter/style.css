@@ -82,7 +82,18 @@ nav {
   outline: none;
   color: #777;
 }
+.wrong_credentials{
+  display:none;
+  position: absolute;
+  top:9%;
+  right: 70px;
+  font-size: 1.4rem;
+  color: red;
+  padding:0.5rem 2rem;
+  border:1px solid red;
+  border-radius: 10rem;
 
+}
 /* MAIN */
 .app {
   position: relative;
@@ -94,7 +105,7 @@ nav {
   gap: 2rem;
 
   /* NOTE This creates the fade in/out anumation */
-  opacity: 100;
+  opacity: 0;
   transition: all 1s;
 }
 

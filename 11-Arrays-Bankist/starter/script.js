@@ -52,6 +52,7 @@ const btnTransfer = document.querySelector('.form__btn--transfer');
 const btnLoan = document.querySelector('.form__btn--loan');
 const btnClose = document.querySelector('.form__btn--close');
 const btnSort = document.querySelector('.btn--sort');
+const wrongCredentialsMessage = document.querySelector('.wrong_credentials');
 
 const inputLoginUsername = document.querySelector('.login__input--user');
 const inputLoginPin = document.querySelector('.login__input--pin');
@@ -77,13 +78,13 @@ const displayMovements = function (movements) {
     containerMovements.insertAdjacentHTML('afterbegin', html);
   });
 };
-displayMovements(account1.movements);
+//displayMovements(account1.movements);
 
 const calcDisplayBalance = movements => {
   const balance = movements.reduce((acc, mov) => acc + mov, 0);
   labelBalance.textContent = `${balance} €`;
 };
-calcDisplayBalance(account1.movements);
+//calcDisplayBalance(account1.movements);
 
 const calcDisplaySummery = function (movements) {
   const incomes = movements
@@ -98,12 +99,11 @@ const calcDisplaySummery = function (movements) {
 
   const intrerest = movements
     .filter(mov => mov > 0)
-    .map(deposit => (deposit * 1.2) / 100)
+    .map(deposit => (deposit * currentAccount.interestRate) / 100)
     .filter(deposit => deposit >= 1)
     .reduce((acc, int) => acc + int, 0);
   labelSumInterest.textContent = `${intrerest}€`;
 };
-calcDisplaySummery(account1.movements);
 
 const createUsenames = accs => {
   accs.forEach(
@@ -118,6 +118,27 @@ const createUsenames = accs => {
 
 createUsenames(accounts);
 
+let currentAccount;
+btnLogin.addEventListener('click', function (event) {
+  event.preventDefault();
+  currentAccount = accounts.find(
+    acc => acc.username === inputLoginUsername.value
+  );
+
+  if (currentAccount?.pin === Number(inputLoginPin.value)) {
+    labelWelcome.textContent = `Wellcome back, ${
+      currentAccount.owner.split(' ')[0]
+    }`;
+    wrongCredentialsMessage.style.display = 'none';
+    containerApp.style.opacity = 100;
+    inputLoginUsername.value = inputLoginPin.value = '';
+    calcDisplaySummery(currentAccount.movements);
+    calcDisplayBalance(currentAccount.movements);
+    displayMovements(currentAccount.movements);
+  } else {
+    wrongCredentialsMessage.style.display = 'block';
+  }
+});
 /////////////////////////////////////////////////
 //////////////////////////
 // LECTURES
@@ -129,7 +150,3 @@ const currencies = new Map([
 ]);
 
 const movements = [200, 450, -400, 3000, -650, -130, 70, 1300];
-
-console.log(accounts);
-const account = accounts.find(acc => acc.owner === 'Jessica Davis');
-console.log(account);
