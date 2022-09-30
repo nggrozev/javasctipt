@@ -85,7 +85,7 @@ nav {
 .wrong_credentials{
   display:none;
   position: absolute;
-  top:9%;
+  top:80px;
   right: 70px;
   font-size: 1.4rem;
   color: red;
