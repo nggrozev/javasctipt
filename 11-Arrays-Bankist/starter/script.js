@@ -98,6 +98,9 @@ const calcDisplayBalance = acc => {
   labelBalance.textContent = `${acc.balance.toFixed(2)}€`;
 };
 
+const dateNow = new Date();
+labelDate.textContent = `${dateNow.getDate()}/${dateNow.getMonth()}/${dateNow.getFullYear()}`;
+
 const calcDisplaySummery = function (movements) {
   const incomes = movements
     .filter(mov => mov > 0)
@@ -136,6 +139,11 @@ const updateUI = function (acc) {
 };
 
 let currentAccount;
+////FAKE LOGIN
+currentAccount = account1;
+updateUI(currentAccount);
+containerApp.style.opacity = 100;
+
 btnLogin.addEventListener('click', function (event) {
   event.preventDefault();
   currentAccount = accounts.find(
@@ -210,3 +218,15 @@ btnSort.addEventListener('click', function (a) {
 });
 /////////////////////////////////////////////////
 //////////////////////////
+
+const future = new Date(2037, 10, 19, 15, 23);
+console.log(future);
+console.log(future.getFullYear());
+console.log(future.getMonth());
+console.log(future.getDate());
+console.log(future.getDay());
+console.log(future.getHours());
+console.log(future.toISOString());
+console.log(future.getTime());
+console.log(new Date(2142249780000));
+console.log(Date.now());
